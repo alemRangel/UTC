@@ -1,29 +1,17 @@
-
-
-TP5
-Recibidos
-x
-
-Alejandro Rangel <buffalem@gmail.com>
-Archivos adjuntos
-6 mar. 2019 18:32 (hace 6 días)
-para mí
-
-
-2 archivos adjuntos
-En este momento, los exploradores de virus de Gmail no están disponibles – No se analizaron los archivos adjuntos en busca de virus. Descárgalos bajo tu responsabilidad.
-
 #include <stdio.h>
 #include <stdlib.h>
 
 #define MAX 5
 
 void ex1();
+void ex2();
+void ex3_1();
+void ex3_2();
 void imprimir(int* puntA,int size);
 
 
 int main(){
-ex1();
+ex3_1();
 return 0;
 }
 
@@ -43,15 +31,36 @@ void ex1(){
     if(mediaT[i]>max)
         max=mediaT[i];
     if(mediaT[i]<max)
-        max=mediaT[i];
+        min=mediaT[i];
  }
  media = suma/MAX;
  imprimir(mediaT,MAX);
  printf("El max es: %d \n",max);
  printf("El min es: %d \n",min);
  printf("La media es: %d \n",media);
+}
 
+void ex2(){
+    
+}
 
+void ex3_1(){
+ char str[50];
+    int contA=0;
+    int i = 0;
+    printf("Inserte una cadena de letras mayusculas, sin espacio, y termine con un punto \n");
+    scanf("%s",str);
+    do{
+     if(toAscii(str[i]) == 65)
+        contA = contA+1;
+     ++i;
+    }while(str[i-1]!=56);
+    printf("El numero de As es de: %d \n",contA);
+}
+
+void ex3_2(){
+    
+    
 }
 
 void imprimir(int* puntA,int size){

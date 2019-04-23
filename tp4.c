@@ -9,7 +9,7 @@ void ex2();
 void ex3();
 void ex4();
 void ex5();
-int main1()
+int main()
 {
     ex5();
     return 0;
@@ -72,16 +72,16 @@ void ex3(){
     imprimir(array,ASIZE);
 }
 void ex1(){
-    int A[] = {12,23,34,45,56,67,78,89,100};
+    int A[] = {12,23,34,45,56,67,78,89,90};
     int* P;
     P=A;
-    printf("%d",*P);
-    printf("%d",*P);
-    printf("%d",*P);
-    printf("%d",*P);
-    printf("%d",*P);
-    printf("%d",*P);
-    printf("%d",*P);
+    printf("%d",*P+2);
+    printf("%d",*(P+2));
+    printf("%d",&A[4]-3);
+    printf("%d",A+3);
+    printf("%d",&A[7]-P);
+    printf("%d",P+(*P-10));
+    printf("%d",*(P+*(P+8)-A[7]));
 
 }
 void ex2(){
