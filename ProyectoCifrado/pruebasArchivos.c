@@ -24,7 +24,7 @@ void prueba(char* texto){
         char cadenaAux[MAXSIZE];
         printf("Introduzca el nombre del archivo \n");
         scanf("%s",nomArchivo);
-          file = fopen(nomArchivo,"rt");
+          file = fopen("text.txt","rt");
         if(file == NULL)
             {
                 printf("El archivo está vacío o no existe");
