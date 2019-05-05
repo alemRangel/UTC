@@ -5,7 +5,7 @@
 #define TXT 100
 #define KEY 20
 
-void ingresaTexto(char *texto);
+void ingresaTexto(char *texto,int tipo);
 void ingresaLlave(char *llave, int tipo);
 void ingresaLlaveCesar(int *kei,int tipo);
 void asciiPos(char *texto, int *text, int largo);
@@ -28,33 +28,33 @@ int main()
 	{
 	system("cls");
 	printf("Elija una opcion:\n");
-	printf("1:cifrado Cesar\n");
+	printf("1:Cifrado Cesar\n");
 	printf("2:Descifrado Cesar\n");		
 	printf("3:cifrado Vigenere\n");
 	printf("4:Descifrado Vigenere\n");
-	printf("5:Cifrar un texto\n");
-	printf("6:Descifrar un texto\n");
+	printf("5:Cifrar un archivo de texto\n");
+	printf("6:Descifrar un archivo de texto\n");
 	printf("Tu opcion: ");
 	scanf("%d",&opcion);
 	if(opcion>6 || opcion<1){
-		printf("\n Escriba un número entre 1 y 6");
+		printf("\n Escriba un numero entre 1 y 6");
 		sleep(1.5);
 	}
 	}while(opcion<1 || opcion>6); 
 
-	ingresaTexto(texto);
+	ingresaTexto(texto,0);
 	system("cls");
 	switch(opcion)
 	{
 	case 1: printf("Cifrado Cesar\n");
-			ingresaTexto(texto);
+			ingresaTexto(texto,1);
 			asciiPos(texto, text, strlen(texto));
 			ingresaLlaveCesar(kei,1); 
 			cifrado(text,strlen(texto),kei,1);
 			printAscii(text,strlen(texto),1);
 			break;
 	case 2: printf("Descifrado Cesar\n");
-			ingresaTexto(texto);
+			ingresaTexto(texto,2);
 			asciiPos(texto, text, strlen(texto));
 			ingresaLlaveCesar(kei,2);
 			claveInversa(kei,kei,1);
@@ -62,7 +62,7 @@ int main()
 			printAscii(text,strlen(texto),2);
 			break;
 	case 3:	printf("Cifrado Vigenere\n");
-			ingresaTexto(texto);
+			ingresaTexto(texto,1);
 		    ingresaLlave(key,1);
 		    asciiPos(texto, text, strlen(texto));
 		    asciiPos(key, kei, strlen(key));
@@ -70,7 +70,7 @@ int main()
 		    printAscii(text,strlen(texto),1);		    
 		    break;
 	case 4:	printf("Descifrado Vigenere\n");
-			ingresaTexto(texto);
+			ingresaTexto(texto,2);
 		    ingresaLlave(key,2);
 		    asciiPos(texto, text, strlen(texto));
 		    asciiPos(key, kei, strlen(key));
@@ -112,9 +112,15 @@ int main()
  * Salida: void
  * Descripción: Se captura el texto escrito en consola en texto.
 */
-void ingresaTexto(char*texto)
+void ingresaTexto(char*texto, int tipo)
 {
+	if(tipo==0)
+	printf(" ");
+	else if(tipo==1)
 	printf("Ingrese el texto a codificar: ");
+	else
+	printf("Ingrese el texto a decodificar: ");
+	
 	gets(texto);
 }
 /**
@@ -126,9 +132,9 @@ void ingresaTexto(char*texto)
 void ingresaLlave(char*llave, int tipo)
 {
 	if(tipo==1)
-	printf("Ingrese la clave de codificacion: ");
+	printf("Ingrese la clave de cifrado: ");
 	else
-	printf("Ingrese la misma clave que usó para codificar: ");
+	printf("Ingrese la misma clave que uso para cifrar: ");
 	
 	gets(llave);
 	printf("\n");
@@ -230,9 +236,9 @@ void claveInversa(int *key,int *keyinv, int tamkey)
 void ingresaLlaveCesar(int* kei, int tipo){
 	int num;
 	if(tipo==1)
-	printf("Escriba una clave para su cifrado Cesar (un número entero): \n");
+	printf("Escriba una clave para su cifrado Cesar (un numero entero): \n");
 	else
-	printf("Escriba la misma clave que usó para su cifrado cesar: \n");
+	printf("Escriba la misma clave que uso para su cifrado cesar: \n");
 	
 	scanf("%d",&num);
 	kei[0] = num;
@@ -271,7 +277,8 @@ void abrirArchivo(char* texto){
                      strcat(texto,cadenaAux);
                  }
              }
-        printf("%s \n",texto);
+        printf("Archivo abierto con exito: \n %s \n",texto);
+		sleep(3);
         fclose(file);
     }
 /**
@@ -293,11 +300,11 @@ void abrirArchivo(char* texto){
 		code = fputc(textoCifrado[i],file);
         if(code<0)
         {
-		printf("Error al abrir el archivo");
+		printf("Error al abrir el archivo \n");
     	break;
 		}
     	}
     	if(code>-1)
-    	printf("cifrado guardado con éxito");
+    	printf("Cifrado guardado con exito en: %s \n ",nomArchivo);
         fclose(file);
     }
