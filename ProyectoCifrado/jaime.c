@@ -291,10 +291,10 @@ void abrirArchivo(char* texto){
         int code,i;
         printf("Introduzca el nombre del archivo para guardar el cifrado: \n");
         scanf("%s",nomArchivo);
-        file = fopen(nomArchivo,"r+");
+        file = fopen(nomArchivo,"w+");
         for(i=0;i<tam;i++)
 		{
-		code = fputc(text[i],file);
+		code = fputc((int)text[i],file);
         if(code<0)
         {
 		printf("Error al abrir el archivo \n");
