@@ -30,7 +30,7 @@ int main()
 	printf("Elija una opcion:\n");
 	printf("1:Cifrado Cesar\n");
 	printf("2:Descifrado Cesar\n");		
-	printf("3:cifrado Vigenere\n");
+	printf("3:Cifrado Vigenere\n");
 	printf("4:Descifrado Vigenere\n");
 	printf("5:Cifrar un archivo de texto\n");
 	printf("6:Descifrar un archivo de texto\n");
@@ -91,6 +91,8 @@ int main()
 		    break;
 	case 6:	printf("Decifrado vigenere a un archivo ya existente \n");
 			abrirArchivo(texto);
+			ingresallave(key);
+			system("cls");
 	    	ingresaLlave(key,2);
 			asciiPos(texto, text, strlen(texto));
 		    asciiPos(key, kei, strlen(key));
@@ -294,7 +296,7 @@ void abrirArchivo(char* texto){
         int code,i;
         printf("\n Introduzca el nombre del archivo para guardar el cifrado \n");
         scanf("%s",nomArchivo);
-        file = fopen(nomArchivo,"r+");
+        file = fopen(nomArchivo,"w");
         for(i=0;i<tam;i++)
 		{
 		code = fputc(textoCifrado[i],file);
