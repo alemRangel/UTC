@@ -81,18 +81,14 @@ int main()
 	case 5:	printf("Cifrado texto Vigenere a un archivo ya existente \n");
 			abrirArchivo(texto);
 	    	ingresaLlave(key,1);
-	    	system("cls");
-	    	printf("cifrado Texto\n");
-	    	ingresaLlave(key,1);
 		    asciiPos(texto, text, strlen(texto));
 		    asciiPos(key, kei, strlen(key));
 		    cifrado(text,strlen(texto),kei,strlen(key));
+			printAscii(text,strlen(texto),1);	
 		    guardarArchivo(text,strlen(texto));   
 		    break;
 	case 6:	printf("Decifrado vigenere a un archivo ya existente \n");
 			abrirArchivo(texto);
-			ingresallave(key);
-			system("cls");
 	    	ingresaLlave(key,2);
 			asciiPos(texto, text, strlen(texto));
 		    asciiPos(key, kei, strlen(key));
@@ -138,7 +134,7 @@ void ingresaLlave(char*llave, int tipo)
 	else
 	printf("Ingrese la misma clave que uso para cifrar: ");
 	
-	gets(llave);
+	scanf("%s",llave);
 	printf("\n");
 }
 
@@ -280,7 +276,6 @@ void abrirArchivo(char* texto){
                  }
              }
         printf("Archivo abierto con exito: \n %s \n",texto);
-		sleep(3);
         fclose(file);
     }
 /**
@@ -290,16 +285,16 @@ void abrirArchivo(char* texto){
  * Descripción:Guarda el texto contenido en la variable textoCifrado
  *  en un archivo ya existente.
  */
- void guardarArchivo(int* textoCifrado,int tam){
+ void guardarArchivo(int* text,int tam){
         FILE* file = NULL;
         char nomArchivo[KEY];
         int code,i;
-        printf("\n Introduzca el nombre del archivo para guardar el cifrado \n");
+        printf("Introduzca el nombre del archivo para guardar el cifrado: \n");
         scanf("%s",nomArchivo);
-        file = fopen(nomArchivo,"w");
+        file = fopen(nomArchivo,"r+");
         for(i=0;i<tam;i++)
 		{
-		code = fputc(textoCifrado[i],file);
+		code = fputc(text[i],file);
         if(code<0)
         {
 		printf("Error al abrir el archivo \n");
@@ -307,6 +302,6 @@ void abrirArchivo(char* texto){
 		}
     	}
     	if(code>-1)
-    	printf("Cifrado guardado con exito en: %s \n ",nomArchivo);
+    	printf("Cifrado guardado con exito \n");
         fclose(file);
     }

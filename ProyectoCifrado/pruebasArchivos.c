@@ -3,11 +3,11 @@
 #define MAXSIZE 25
 void prueba();
 void mod();
+void guardarArchivo(char* textoCifrado);
 int main(){
     char texto[100];
-    texto[0] = 0;
-    prueba(texto);
-    printf("%s",texto); 
+    scanf("%s",texto);
+    guardarArchivo(texto);
     
     return 0;
 }
@@ -18,6 +18,23 @@ void mod(){
     mod = b%a;
     printf("%d",mod);
 }
+void guardarArchivo(char* textoCifrado){
+        FILE* file = NULL;
+        char nomArchivo[MAXSIZE];
+        int code;
+        printf("\n Introduzca el nombre del archivo para guardar el cifrado \n");
+        scanf("%s",nomArchivo);
+        file = fopen(nomArchivo,"w+");
+        code = fputs(textoCifrado,file);
+        if(code<0)
+        printf("Error al abrir el archivo");
+        else
+        {
+            printf("Cifrado guardado con éxito");
+        }
+        
+        fclose(file);
+    }
 void prueba(char* texto){
          FILE* file  = NULL;
         char nomArchivo[MAXSIZE];
