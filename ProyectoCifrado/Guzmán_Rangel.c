@@ -94,6 +94,7 @@ int main()
 		    asciiPos(key, kei, strlen(key));
 			claveInversa(kei,kei,strlen(key));
 		    cifrado(text,strlen(texto),kei,strlen(key));
+			printAscii(text,strlen(texto),2);
 		    guardarArchivo(text,strlen(texto));
 			break;
 	}
