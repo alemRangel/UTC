@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
+// Pongan en el main menuPila(),ex1(),ex2() o ex3() dependiendo lo que quieran probar
 
 typedef struct Eslabon Eslabon;
 struct Eslabon{
@@ -20,52 +20,13 @@ int ultimaApilada(Pila* pila);
 int desapilar(Pila* pila);
 void vaciarPila(Eslabon* eslabon);
 int destruirPila(Pila* pila);
+void menuPila();
+void ex1();
+void ex2();
+void ex3();
 
 int main(){
-    Pila pila;
-    inicializar(&pila);
-    int cont;
-    int opc;
-
-    do{
-        printf("Seleccione una opcion: \n");
-        printf("1- Apilar \n");
-        printf("2- Desapilar \n");
-        printf("3- Imprimir todo \n");
-        printf("4- Ultima apilada \n");
-        printf("5- Destuir Pila\n");
-        scanf("%d",&opc);
-        switch (opc)
-        {
-        case 1:
-            apilar(&pila);
-            break;
-        
-        case 2:
-            if(desapilar(&pila))
-                printf("La pila esta vacia \n");
-            break;
-        case 3:
-            if(imprimirTodo(&pila))
-                printf("La pila esta vacia \n");
-            break;
-        case 4:
-            if(ultimaApilada(&pila))
-                printf("La pila esta vacia \n");
-            break;
-        case 5:
-            if(destruirPila(&pila))
-                printf("La pila esta vacia \n");
-            break;
-        
-        default:
-            printf("Seleccioe un número valido \n");
-            break;
-        }
-
-        printf("Desea seguir trabajando con la pila? 1/0 \n");
-        scanf("%d",&opc);
-    }while(opc==1);
+    ex1();
     return 0;
 }
 
@@ -152,4 +113,63 @@ int imprimirTodo(Pila* pila)
         return 1;
     imprimirPila(*pila);
     return 0;
+}
+
+void menuPila(){
+    Pila pila;
+    inicializar(&pila);
+    int cont;
+    int opc;
+
+    do{
+        printf("Seleccione una opcion: \n");
+        printf("1- Apilar \n");
+        printf("2- Desapilar \n");
+        printf("3- Imprimir todo \n");
+        printf("4- Ultima apilada \n");
+        printf("5- Destuir Pila\n");
+        scanf("%d",&opc);
+        switch (opc)
+        {
+        case 1:
+            apilar(&pila);
+            break;
+        
+        case 2:
+            if(desapilar(&pila))
+                printf("La pila esta vacia \n");
+            break;
+        case 3:
+            if(imprimirTodo(&pila))
+                printf("La pila esta vacia \n");
+            break;
+        case 4:
+            if(ultimaApilada(&pila))
+                printf("La pila esta vacia \n");
+            break;
+        case 5:
+            if(destruirPila(&pila))
+                printf("La pila esta vacia \n");
+            break;
+        
+        default:
+            printf("Seleccioe un número valido \n");
+            break;
+        }
+
+        printf("Desea seguir trabajando con la pila? 1/0 \n");
+        scanf("%d",&opc);
+    }while(opc==1);
+}
+
+void ex1(){
+    Pila pila;
+    inicializar(&pila);
+    int opc;
+    do{
+        apilar(&pila);
+        printf("Desea seguir apilando? 1/0\n");
+        scanf("%d",&opc);
+    }while(opc==1);
+    imprimirTodo(&pila);
 }
